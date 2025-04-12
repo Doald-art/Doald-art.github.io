@@ -1,0 +1,558 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="Hexo" href="https://doald-art.github.io/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="Hexo" href="https://doald-art.github.io/atom.xml" />
+<link rel="alternate" type="application/json" title="Hexo" href="https://doald-art.github.io/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+
+<link rel="canonical" href="https://doald-art.github.io/2025/03/21/ros%E5%AD%A6%E4%B9%A0/TF%E5%9D%90%E6%A0%87%E5%8F%98%E6%8D%A2/">
+
+
+
+  <title>
+TF坐标变换 |
+Yume Shoka = Hexo</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">TF坐标变换
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="创建时间：2025-03-21 16:47:14">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">发表于</span>
+    <time itemprop="dateCreated datePublished" datetime="2025-03-21T16:47:14+08:00">2025-03-21</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="切换导航栏">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">Yume Shoka</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://s3.bmp.ovh/imgs/2025/04/12/e0989b0822305715.jpg"></li>
+          <li class="item" data-background-image="https://s3.bmp.ovh/imgs/2025/04/12/a3a4037a1eeb27cd.jpeg"></li>
+          <li class="item" data-background-image="https://s3.bmp.ovh/imgs/2025/04/12/35c978ea62b07502.jpeg"></li>
+          <li class="item" data-background-image="https://s3.bmp.ovh/imgs/2025/04/12/7adb9dec5ebf62b7.png"></li>
+          <li class="item" data-background-image="https://s3.bmp.ovh/imgs/2025/04/12/b95db2d654344b37.jpeg"></li>
+          <li class="item" data-background-image="https://s3.bmp.ovh/imgs/2025/04/12/706de45f37a3b277.png"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">首页</a></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
+  <link itemprop="mainEntityOfPage" href="https://doald-art.github.io/2025/03/21/ros%E5%AD%A6%E4%B9%A0/TF%E5%9D%90%E6%A0%87%E5%8F%98%E6%8D%A2/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/images/avatar.jpg">
+    <meta itemprop="name" content="Doald-art">
+    <meta itemprop="description" content=", ">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Hexo">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h1 id="概念与作用"><a href="#概念与作用" class="headerlink" title="概念与作用"></a>概念与作用</h1><ul>
+<li>TF : TransForm Frame, 坐标变换</li>
+<li>坐标系：ROS 中通过右手坐标系来确定</li>
+<li>实现不同坐标系之前的点或向量的转换</li>
+</ul>
+<h2 id="坐标-msg-消息"><a href="#坐标-msg-消息" class="headerlink" title="坐标 msg 消息"></a>坐标 msg 消息</h2><h1 id="坐标-msg-信息"><a href="#坐标-msg-信息" class="headerlink" title="坐标 msg 信息"></a>坐标 msg 信息</h1><ul>
+<li>传输坐标系的<em>相关位置信息</em>：<code>rosmsg info geometry_msgs/TransformStamped</code></li>
+<li>传输某个坐标系内的<em>坐标点</em>的信息：<code>rosmsg info gemetry_msgs/PointsStamped</code></li>
+</ul>
+<h1 id="静态坐标变换"><a href="#静态坐标变换" class="headerlink" title="静态坐标变换"></a>静态坐标变换</h1><ul>
+<li><p>概念：两个坐标系的相对位置是固定的</p>
+</li>
+<li><p><strong>需求描述</strong>：<br>   现有一机器人模型，核心构成包含主体与雷达，各对应一坐标系，坐标系的原点分别位于主体与雷达的物理中心，已知雷达原点相对于主体原点位移关系如下: x 0.2 y0.0 z0.5。当前雷达检测到一障碍物，在雷达坐标系中障碍物的坐标为 (2.0 3.0 5.0),请问，该障碍物相对于主体的坐标是多少？</p>
+</li>
+<li><p><em>实现流程</em>：</p>
+<ol>
+<li>创建功能包：  tf2、tf2_ros、tf2_geometry_msgs、roscpp rospy std_msgs geometry_msgs</li>
+<li>发布方实现：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">	#! /usr/bin/env python</span><br><span class="line">&quot;&quot;&quot;  </span><br><span class="line">    静态坐标变换发布方:</span><br><span class="line">        发布关于 laser 坐标系的位置信息 </span><br><span class="line">    实现流程:</span><br><span class="line">        1.导包</span><br><span class="line">        2.初始化 ROS 节点</span><br><span class="line">        3.创建 静态坐标广播器</span><br><span class="line">        4.创建并组织被广播的消息</span><br><span class="line">        5.广播器发送消息</span><br><span class="line">	        6.spin</span><br><span class="line">	&quot;&quot;&quot;</span><br><span class="line">	# 1.导包</span><br><span class="line">	import rospy</span><br><span class="line">	import tf2_ros</span><br><span class="line">	import tf</span><br><span class="line">	from geometry_msgs.msg import TransformStamped</span><br><span class="line">	</span><br><span class="line">	if __name__ == &quot;__main__&quot;:</span><br><span class="line">	    # 2.初始化 ROS 节点</span><br><span class="line">	    rospy.init_node(&quot;static_tf_pub_p&quot;)</span><br><span class="line">	    # 3.创建 静态坐标广播器</span><br><span class="line">	    broadcaster = tf2_ros.StaticTransformBroadcaster()</span><br><span class="line">	    # 4.创建并组织被广播的消息</span><br><span class="line">	    tfs = TransformStamped()</span><br><span class="line">	    # --- 头信息</span><br><span class="line">	    tfs.header.frame_id = &quot;world&quot;</span><br><span class="line">	    tfs.header.stamp = rospy.Time.now()</span><br><span class="line">	    tfs.header.seq = 101</span><br><span class="line">	    # --- 子坐标系</span><br><span class="line">	    tfs.child_frame_id = &quot;radar&quot;</span><br><span class="line">	    # --- 坐标系相对信息</span><br><span class="line">	    # ------ 偏移量</span><br><span class="line">	    tfs.transform.translation.x = 0.2</span><br><span class="line">	    tfs.transform.translation.y = 0.0</span><br><span class="line">	    tfs.transform.translation.z = 0.5</span><br><span class="line">	    # ------ 四元数</span><br><span class="line">	    qtn = tf.transformations.quaternion_from_euler(0,0,0)</span><br><span class="line">	    tfs.transform.rotation.x = qtn[0]</span><br><span class="line">	    tfs.transform.rotation.y = qtn[1]</span><br><span class="line">	    tfs.transform.rotation.z = qtn[2]</span><br><span class="line">	    tfs.transform.rotation.w = qtn[3]</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	    # 5.广播器发送消息</span><br><span class="line">	    broadcaster.sendTransform(tfs)</span><br><span class="line">	    # 6.spin</span><br><span class="line">	    rospy.spin()</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>3.订阅方实现</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">#! /usr/bin/env python</span><br><span class="line">&quot;&quot;&quot;  </span><br><span class="line">    订阅坐标系信息，生成一个相对于 子级坐标系的坐标点数据，</span><br><span class="line">    转换成父级坐标系中的坐标点</span><br><span class="line"></span><br><span class="line">    实现流程:</span><br><span class="line">        1.导包</span><br><span class="line">        2.初始化 ROS 节点</span><br><span class="line">        3.创建 TF 订阅对象</span><br><span class="line">        4.创建一个 radar 坐标系中的坐标点</span><br><span class="line">        5.调研订阅对象的 API 将 4 中的点坐标转换成相对于 world 的坐标</span><br><span class="line">        6.spin</span><br><span class="line"></span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line"># 1.导包</span><br><span class="line">import rospy</span><br><span class="line">import tf2_ros</span><br><span class="line"># 不要使用 geometry_msgs,需要使用 tf2 内置的消息类型</span><br><span class="line">from tf2_geometry_msgs import PointStamped</span><br><span class="line"># from geometry_msgs.msg import PointStamped</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    # 2.初始化 ROS 节点</span><br><span class="line">    rospy.init_node(&quot;static_sub_tf_p&quot;)</span><br><span class="line">    # 3.创建 TF 订阅对象</span><br><span class="line">    buffer = tf2_ros.Buffer()</span><br><span class="line">    listener = tf2_ros.TransformListener(buffer)</span><br><span class="line"></span><br><span class="line">    rate = rospy.Rate(1)</span><br><span class="line">    while not rospy.is_shutdown():    </span><br><span class="line">    # 4.创建一个 radar 坐标系中的坐标点</span><br><span class="line">        point_source = PointStamped()</span><br><span class="line">        point_source.header.frame_id = &quot;radar&quot;</span><br><span class="line">        point_source.header.stamp = rospy.Time.now()</span><br><span class="line">        point_source.point.x = 10</span><br><span class="line">        point_source.point.y = 2</span><br><span class="line">        point_source.point.z = 3</span><br><span class="line"></span><br><span class="line">        try:</span><br><span class="line">    #     5.调研订阅对象的 API 将 4 中的点坐标转换成相对于 world 的坐标</span><br><span class="line">            point_target = buffer.transform(point_source,&quot;world&quot;)</span><br><span class="line">            rospy.loginfo(&quot;转换结果:x = %.2f, y = %.2f, z = %.2f&quot;,</span><br><span class="line">                            point_target.point.x,</span><br><span class="line">                            point_target.point.y,</span><br><span class="line">                            point_target.point.z)</span><br><span class="line">        except Exception as e:</span><br><span class="line">            rospy.logerr(&quot;异常:%s&quot;,e)</span><br><span class="line"></span><br><span class="line">    #     6.spin</span><br><span class="line">        rate.sleep()</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>![[Pasted image 20250323163718.png]]</p>
+<ul>
+<li>利用 tf 2-ros 自带的 static_transform_publisher 来模拟静态坐标变换并改变各个方向的位置<br>![[Pasted image 20250323194946.png]]</li>
+</ul>
+<h1 id="动态坐标变换"><a href="#动态坐标变换" class="headerlink" title="动态坐标变换"></a>动态坐标变换</h1><ol>
+<li><em>实现分析</em>：<ol>
+<li>乌龟既是坐标系，同时也是世界坐标系坐标点</li>
+<li>订阅 turtle 1&#x2F;pose, 可以获取乌龟再世界坐标系的 x 坐标，y 坐标</li>
+<li>将 pose 信息转换坐标系相对信息并发布</li>
+</ol>
+</li>
+<li><em>创建功能包</em>:<ol>
+<li>创建项目功能包依赖于 tf2、tf2_ros、tf2_geometry_msgs、roscpp rospy std_msgs geometry_msgs、turtlesim</li>
+</ol>
+</li>
+<li><em>发布方</em>： <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">#! /usr/bin/env python</span><br><span class="line">&quot;&quot;&quot;  </span><br><span class="line">    动态的坐标系相对姿态发布(一个坐标系相对于另一个坐标系的相对姿态是不断变动的)</span><br><span class="line"></span><br><span class="line">    需求: 启动 turtlesim_node,该节点中窗体有一个世界坐标系(左下角为坐标系原点)，乌龟是另一个坐标系，键盘</span><br><span class="line">    控制乌龟运动，将两个坐标系的相对位置动态发布</span><br><span class="line"></span><br><span class="line">    实现分析:</span><br><span class="line">        1.乌龟本身不但可以看作坐标系，也是世界坐标系中的一个坐标点</span><br><span class="line">        2.订阅 turtle1/pose,可以获取乌龟在世界坐标系的 x坐标、y坐标、偏移量以及线速度和角速度</span><br><span class="line">        3.将 pose 信息转换成 坐标系相对信息并发布</span><br><span class="line">    实现流程:</span><br><span class="line">        1.导包</span><br><span class="line">        2.初始化 ROS 节点</span><br><span class="line">        3.订阅 /turtle1/pose 话题消息</span><br><span class="line">        4.回调函数处理</span><br><span class="line">            4-1.创建 TF 广播器</span><br><span class="line">            4-2.创建 广播的数据(通过 pose 设置)</span><br><span class="line">            4-3.广播器发布数据</span><br><span class="line">        5.spin</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line"># 1.导包</span><br><span class="line">import rospy</span><br><span class="line">import tf2_ros</span><br><span class="line">import tf</span><br><span class="line">from turtlesim.msg import Pose</span><br><span class="line">from geometry_msgs.msg import TransformStamped</span><br><span class="line"></span><br><span class="line">#     4.回调函数处理</span><br><span class="line">def doPose(pose):</span><br><span class="line">    #         4-1.创建 TF 广播器</span><br><span class="line">    broadcaster = tf2_ros.TransformBroadcaster()</span><br><span class="line">    #         4-2.创建 广播的数据(通过 pose 设置)</span><br><span class="line">    tfs = TransformStamped()</span><br><span class="line">    tfs.header.frame_id = &quot;world&quot;</span><br><span class="line">    tfs.header.stamp = rospy.Time.now()</span><br><span class="line">    tfs.child_frame_id = &quot;turtle1&quot;</span><br><span class="line">    tfs.transform.translation.x = pose.x</span><br><span class="line">    tfs.transform.translation.y = pose.y</span><br><span class="line">    tfs.transform.translation.z = 0.0</span><br><span class="line">    qtn = tf.transformations.quaternion_from_euler(0,0,pose.theta)</span><br><span class="line">    tfs.transform.rotation.x = qtn[0]</span><br><span class="line">    tfs.transform.rotation.y = qtn[1]</span><br><span class="line">    tfs.transform.rotation.z = qtn[2]</span><br><span class="line">    tfs.transform.rotation.w = qtn[3]</span><br><span class="line">    #         4-3.广播器发布数据</span><br><span class="line">    broadcaster.sendTransform(tfs)</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    # 2.初始化 ROS 节点</span><br><span class="line">    rospy.init_node(&quot;dynamic_tf_pub_p&quot;)</span><br><span class="line">    # 3.订阅 /turtle1/pose 话题消息</span><br><span class="line">    sub = rospy.Subscriber(&quot;/turtle1/pose&quot;,Pose,doPose)</span><br><span class="line">    #     4.回调函数处理</span><br><span class="line">    #         4-1.创建 TF 广播器</span><br><span class="line">    #         4-2.创建 广播的数据(通过 pose 设置)</span><br><span class="line">    #         4-3.广播器发布数据</span><br><span class="line">    #     5.spin</span><br><span class="line">    rospy.spin()</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>4.<em>订阅方</em>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">#! /usr/bin/env python</span><br><span class="line">&quot;&quot;&quot;  </span><br><span class="line">    动态的坐标系相对姿态发布(一个坐标系相对于另一个坐标系的相对姿态是不断变动的)</span><br><span class="line"></span><br><span class="line">    需求: 启动 turtlesim_node,该节点中窗体有一个世界坐标系(左下角为坐标系原点)，乌龟是另一个坐标系，键盘</span><br><span class="line">    控制乌龟运动，将两个坐标系的相对位置动态发布</span><br><span class="line"></span><br><span class="line">    实现分析:</span><br><span class="line">        1.乌龟本身不但可以看作坐标系，也是世界坐标系中的一个坐标点</span><br><span class="line">        2.订阅 turtle1/pose,可以获取乌龟在世界坐标系的 x坐标、y坐标、偏移量以及线速度和角速度</span><br><span class="line">        3.将 pose 信息转换成 坐标系相对信息并发布</span><br><span class="line">    实现流程:</span><br><span class="line">        1.导包</span><br><span class="line">        2.初始化 ROS 节点</span><br><span class="line">        3.创建 TF 订阅对象</span><br><span class="line">        4.处理订阅的数据</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line"># 1.导包</span><br><span class="line">import rospy</span><br><span class="line">import tf2_ros</span><br><span class="line"># 不要使用 geometry_msgs,需要使用 tf2 内置的消息类型</span><br><span class="line">from tf2_geometry_msgs import PointStamped</span><br><span class="line"># from geometry_msgs.msg import PointStamped</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    # 2.初始化 ROS 节点</span><br><span class="line">    rospy.init_node(&quot;static_sub_tf_p&quot;)</span><br><span class="line">    # 3.创建 TF 订阅对象</span><br><span class="line">    buffer = tf2_ros.Buffer()</span><br><span class="line">    listener = tf2_ros.TransformListener(buffer)</span><br><span class="line"></span><br><span class="line">    rate = rospy.Rate(1)</span><br><span class="line">    while not rospy.is_shutdown():    </span><br><span class="line">    # 4.创建一个 radar 坐标系中的坐标点</span><br><span class="line">        point_source = PointStamped()</span><br><span class="line">        point_source.header.frame_id = &quot;turtle1&quot;</span><br><span class="line">        point_source.header.stamp = rospy.Time.now()</span><br><span class="line">        point_source.point.x = 10</span><br><span class="line">        point_source.point.y = 2</span><br><span class="line">        point_source.point.z = 3</span><br><span class="line"></span><br><span class="line">        try:</span><br><span class="line">    #     5.调研订阅对象的 API 将 4 中的点坐标转换成相对于 world 的坐标</span><br><span class="line">            point_target = buffer.transform(point_source,&quot;world&quot;,rospy.Duration(1))</span><br><span class="line">            rospy.loginfo(&quot;转换结果:x = %.2f, y = %.2f, z = %.2f&quot;,</span><br><span class="line">                            point_target.point.x,</span><br><span class="line">                            point_target.point.y,</span><br><span class="line">                            point_target.point.z)</span><br><span class="line">        except Exception as e:</span><br><span class="line">            rospy.logerr(&quot;异常:%s&quot;,e)</span><br><span class="line"></span><br><span class="line">    #     6.spin</span><br><span class="line">        rate.sleep()</span><br></pre></td></tr></table></figure>
+
+<p>5.<em>执行</em>：</p>
+<ul>
+<li>先启动 rosrun turtlesim turtlesim_node </li>
+<li>在启动 rosrun turtlesim turtle_teleop_key</li>
+<li>使用命令行启动发布点与订阅节点</li>
+<li>启动 rqt_graph 查看节点的关系 </li>
+<li>可以使用 rviz 查看坐标系的相对关系<br> ![[1ecc49cbf9b3889929d9d37ff5b02c1.jpg]]</li>
+</ul>
+<h1 id="多坐标变换😀"><a href="#多坐标变换😀" class="headerlink" title="多坐标变换😀"></a>多坐标变换😀</h1><ol>
+<li>需求描述：<br> 现有坐标系统，父级坐标系统 world,下有两子级系统 son1，son2，son1 相对于 world，以及 son2 相对于 world 的关系是已知的，求 son1原点在 son2中的坐标，又已知在 son1中一点的坐标，要求求出该点在 son2 中的坐标</li>
+</ol>
+<p>2.<em>实现分析</em>：<br>    1 .发布 son 1 相对于 world, 以及 son 2 相对于 world 的坐标信息<br>    2. 然后订阅坐标发布消息，并取出订阅的消息，借助 tf 2 实现 son 1 和 son 2 的转换<br>    3. 最后，再实现坐标点的转换<br>3 实现流程：</p>
+<ul>
+<li>创建项目依赖的功能包</li>
+<li>发布方实现  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;launch&gt;</span><br><span class="line">	&lt;node pkg=&quot;tf2_ros&quot; type=&quot;static_transform_publisher&quot; name=&quot;son1&quot; args=&quot;0.2 0.8 0.3 0 0 0 /world /son1&quot; output=&quot;screen&quot; /&gt;</span><br><span class="line">	&lt;node pkg=&quot;tf2_ros&quot; type=&quot;static_transform_publisher&quot; name=&quot;son2&quot; args=&quot;0.5 0 0 0 0 0 /world /son2&quot; output=&quot;screen&quot; /&gt;</span><br><span class="line">&lt;/launch&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+3 订阅方<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line"></span><br><span class="line">需求:</span><br><span class="line">    现有坐标系统，父级坐标系统 world,下有两子级系统 son1，son2，</span><br><span class="line">    son1 相对于 world，以及 son2 相对于 world 的关系是已知的，</span><br><span class="line">    求 son1 与 son2中的坐标关系，又已知在 son1中一点的坐标，要求求出该点在 son2 中的坐标</span><br><span class="line">实现流程:</span><br><span class="line">    1.包含头文件</span><br><span class="line">    2.初始化 ros 节点</span><br><span class="line">    3.创建 ros 句柄</span><br><span class="line">    4.创建 TF 订阅对象</span><br><span class="line">    5.解析订阅信息中获取 son1 坐标系原点在 son2 中的坐标</span><br><span class="line">      解析 son1 中的点相对于 son2 的坐标</span><br><span class="line">    6.spin</span><br><span class="line"></span><br><span class="line">*/</span><br><span class="line">//1.包含头文件</span><br><span class="line">#include &quot;ros/ros.h&quot;</span><br><span class="line">#include &quot;tf2_ros/transform_listener.h&quot;</span><br><span class="line">#include &quot;tf2/LinearMath/Quaternion.h&quot;</span><br><span class="line">#include &quot;tf2_geometry_msgs/tf2_geometry_msgs.h&quot;</span><br><span class="line">#include &quot;geometry_msgs/TransformStamped.h&quot;</span><br><span class="line">#include &quot;geometry_msgs/PointStamped.h&quot;</span><br><span class="line"></span><br><span class="line">int main(int argc, char *argv[])</span><br><span class="line">&#123;   setlocale(LC_ALL,&quot;&quot;);</span><br><span class="line">    // 2.初始化 ros 节点</span><br><span class="line">    ros::init(argc,argv,&quot;sub_frames&quot;);</span><br><span class="line">    // 3.创建 ros 句柄</span><br><span class="line">    ros::NodeHandle nh;</span><br><span class="line">    // 4.创建 TF 订阅对象</span><br><span class="line">    tf2_ros::Buffer buffer; </span><br><span class="line">    tf2_ros::TransformListener listener(buffer);</span><br><span class="line">    // 5.解析订阅信息中获取 son1 坐标系原点在 son2 中的坐标</span><br><span class="line">    ros::Rate r(1);</span><br><span class="line">    while (ros::ok())</span><br><span class="line">    &#123;</span><br><span class="line">        try</span><br><span class="line">        &#123;</span><br><span class="line">        //   解析 son1 中的点相对于 son2 的坐标</span><br><span class="line">            geometry_msgs::TransformStamped tfs = buffer.lookupTransform(&quot;son2&quot;,&quot;son1&quot;,ros::Time(0));</span><br><span class="line">            ROS_INFO(&quot;Son1 相对于 Son2 的坐标关系:父坐标系ID=%s&quot;,tfs.header.frame_id.c_str());</span><br><span class="line">            ROS_INFO(&quot;Son1 相对于 Son2 的坐标关系:子坐标系ID=%s&quot;,tfs.child_frame_id.c_str());</span><br><span class="line">            ROS_INFO(&quot;Son1 相对于 Son2 的坐标关系:x=%.2f,y=%.2f,z=%.2f&quot;,</span><br><span class="line">                    tfs.transform.translation.x,</span><br><span class="line">                    tfs.transform.translation.y,</span><br><span class="line">                    tfs.transform.translation.z</span><br><span class="line">                    );</span><br><span class="line"></span><br><span class="line">            // 坐标点解析</span><br><span class="line">            geometry_msgs::PointStamped ps;</span><br><span class="line">            ps.header.frame_id = &quot;son1&quot;;</span><br><span class="line">            ps.header.stamp = ros::Time::now();</span><br><span class="line">            ps.point.x = 1.0;</span><br><span class="line">            ps.point.y = 2.0;</span><br><span class="line">            ps.point.z = 3.0;</span><br><span class="line"></span><br><span class="line">            geometry_msgs::PointStamped psAtSon2;</span><br><span class="line">            psAtSon2 = buffer.transform(ps,&quot;son2&quot;);</span><br><span class="line">            ROS_INFO(&quot;在 Son2 中的坐标:x=%.2f,y=%.2f,z=%.2f&quot;,</span><br><span class="line">                    psAtSon2.point.x,</span><br><span class="line">                    psAtSon2.point.y,</span><br><span class="line">                    psAtSon2.point.z</span><br><span class="line">                    );</span><br><span class="line">        &#125;</span><br><span class="line">        catch(const std::exception&amp; e)</span><br><span class="line">        &#123;</span><br><span class="line">            // std::cerr &lt;&lt; e.what() &lt;&lt; &#x27;\n&#x27;;</span><br><span class="line">            ROS_INFO(&quot;异常信息:%s&quot;,e.what());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        r.sleep();</span><br><span class="line">        // 6.spin</span><br><span class="line">        ros::spinOnce();</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<ol start="4">
+<li>执行<ol>
+<li>可以使用命令行或 launch 文件的方式分别启动发布节点和订阅节点，并查看结果</li>
+</ol>
+</li>
+</ol>
+<h1 id="Tf-坐标变换实操"><a href="#Tf-坐标变换实操" class="headerlink" title="Tf 坐标变换实操"></a>Tf 坐标变换实操</h1><ol>
+<li><em>需求描述</em>：<br>  程序启动之初: 产生两只乌龟，中间的乌龟(A) 和左下乌龟(B), B 会自动运行至A的位置，并且键盘控制时，只是控制 A 的运动，但是 B 可以跟随 A 运行</li>
+<li>实现分析：<ol>
+<li>启功乌龟显示节点 rosrun turtlesim turtlesim_node</li>
+<li>编写服务客户端，用于生一只新的乌龟</li>
+<li>编写发布方，发布两只乌龟的坐标信息</li>
+<li>编写订阅方，订阅两只乌龟的信息，生成速度信息并发布</li>
+<li>运行节点</li>
+</ol>
+</li>
+<li><em>实现流程</em>：<ol>
+<li>创建功能包： tf2、tf2_ros、tf2_geometry_msgs、roscpp rospy std_msgs geometry_msgs、turtlesim</li>
+<li>服务客户端（生成乌龟）<ul>
+<li>创建 test 01_new_turtle_p.py</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">#! /usr/bin/env python</span><br><span class="line">&quot;&quot;&quot;  </span><br><span class="line">    调用 service 服务在窗体指定位置生成一只乌龟</span><br><span class="line">    流程:</span><br><span class="line">        1.导包</span><br><span class="line">        2.初始化 ros 节点</span><br><span class="line">        3.创建服务客户端</span><br><span class="line">        4.等待服务启动</span><br><span class="line">        5.创建请求数据</span><br><span class="line">        6.发送请求并处理响应</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">#1.导包</span><br><span class="line">import rospy</span><br><span class="line">from turtlesim.srv import Spawn, SpawnRequest, SpawnResponse</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    # 2.初始化 ros 节点</span><br><span class="line">    rospy.init_node(&quot;turtle_spawn_p&quot;)</span><br><span class="line">    # 3.创建服务客户端</span><br><span class="line">    client = rospy.ServiceProxy(&quot;/spawn&quot;,Spawn)</span><br><span class="line">    # 4.等待服务启动</span><br><span class="line">    client.wait_for_service()</span><br><span class="line">    # 5.创建请求数据</span><br><span class="line">    req = SpawnRequest()</span><br><span class="line">    req.x = 1.0</span><br><span class="line">    req.y = 1.0</span><br><span class="line">    req.theta = 3.14</span><br><span class="line">    req.name = &quot;turtle2&quot;</span><br><span class="line">    # 6.发送请求并处理响应</span><br><span class="line">    try:</span><br><span class="line">        response = client.call(req)</span><br><span class="line">        rospy.loginfo(&quot;乌龟创建成功，名字是:%s&quot;,response.name)</span><br><span class="line">    except Exception as e:</span><br><span class="line">        rospy.loginfo(&quot;服务调用失败....&quot;)</span><br></pre></td></tr></table></figure>
+<p>rostopic list<br>rostopic pub -r 10 &#x2F;turtle2&#x2F;cmd_vel geometry_msgs&#x2F;<br>    3.发布方（发布两只乌龟的坐标 信息）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">#! /usr/bin/env python</span><br><span class="line">&quot;&quot;&quot;  </span><br><span class="line">    该文件实现:需要订阅 turtle1 和 turtle2 的 pose，然后广播相对 world 的坐标系信息</span><br><span class="line"></span><br><span class="line">    注意: 订阅的两只 turtle,除了命名空间(turtle1 和 turtle2)不同外,</span><br><span class="line">          其他的话题名称和实现逻辑都是一样的，</span><br><span class="line">          所以我们可以将所需的命名空间通过 args 动态传入</span><br><span class="line"></span><br><span class="line">    实现流程:</span><br><span class="line">        1.导包</span><br><span class="line">        2.初始化 ros 节点</span><br><span class="line">        3.解析传入的命名空间</span><br><span class="line">        4.创建订阅对象</span><br><span class="line">        5.回调函数处理订阅的 pose 信息</span><br><span class="line">            5-1.创建 TF 广播器</span><br><span class="line">            5-2.将 pose 信息转换成 TransFormStamped</span><br><span class="line">            5-3.发布</span><br><span class="line">        6.spin</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line"># 1.导包</span><br><span class="line">import rospy</span><br><span class="line">import sys</span><br><span class="line">from turtlesim.msg import Pose</span><br><span class="line">from geometry_msgs.msg import TransformStamped</span><br><span class="line">import tf2_ros</span><br><span class="line">import tf_conversions</span><br><span class="line"></span><br><span class="line">turtle_name = &quot;&quot;</span><br><span class="line"></span><br><span class="line">def doPose(pose):</span><br><span class="line">    # rospy.loginfo(&quot;x = %.2f&quot;,pose.x)</span><br><span class="line">    #1.创建坐标系广播器</span><br><span class="line">    broadcaster = tf2_ros.TransformBroadcaster()</span><br><span class="line">    #2.将 pose 信息转换成 TransFormStamped</span><br><span class="line">    tfs = TransformStamped()</span><br><span class="line">    tfs.header.frame_id = &quot;world&quot;</span><br><span class="line">    tfs.header.stamp = rospy.Time.now()</span><br><span class="line"></span><br><span class="line">    tfs.child_frame_id = turtle_name</span><br><span class="line">    tfs.transform.translation.x = pose.x</span><br><span class="line">    tfs.transform.translation.y = pose.y</span><br><span class="line">    tfs.transform.translation.z = 0.0</span><br><span class="line"></span><br><span class="line">    qtn = tf_conversions.transformations.quaternion_from_euler(0, 0, pose.theta)</span><br><span class="line">    tfs.transform.rotation.x = qtn[0]</span><br><span class="line">    tfs.transform.rotation.y = qtn[1]</span><br><span class="line">    tfs.transform.rotation.z = qtn[2]</span><br><span class="line">    tfs.transform.rotation.w = qtn[3]</span><br><span class="line"></span><br><span class="line">    #3.广播器发布 tfs</span><br><span class="line">    broadcaster.sendTransform(tfs)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    # 2.初始化 ros 节点</span><br><span class="line">    rospy.init_node(&quot;sub_tfs_p&quot;)</span><br><span class="line">    # 3.解析传入的命名空间</span><br><span class="line">    rospy.loginfo(&quot;-------------------------------%d&quot;,len(sys.argv))</span><br><span class="line">    if len(sys.argv) &lt; 2:</span><br><span class="line">        rospy.loginfo(&quot;请传入参数:乌龟的命名空间&quot;)</span><br><span class="line">    else:</span><br><span class="line">        turtle_name = sys.argv[1]</span><br><span class="line">    rospy.loginfo(&quot;///////////////////乌龟:%s&quot;,turtle_name)</span><br><span class="line"></span><br><span class="line">    rospy.Subscriber(turtle_name + &quot;/pose&quot;,Pose,doPose)</span><br><span class="line">    #     4.创建订阅对象</span><br><span class="line">    #     5.回调函数处理订阅的 pose 信息</span><br><span class="line">    #         5-1.创建 TF 广播器</span><br><span class="line">    #         5-2.将 pose 信息转换成 TransFormStamped</span><br><span class="line">    #         5-3.发布</span><br><span class="line">    #     6.spin</span><br><span class="line">    rospy.spin()</span><br></pre></td></tr></table></figure>
+<pre><code>4.订阅方（解析坐标信息并生成速度信息）
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">#! /usr/bin/env python</span><br><span class="line">&quot;&quot;&quot;  </span><br><span class="line">    订阅 turtle1 和 turtle2 的 TF 广播信息，查找并转换时间最近的 TF 信息</span><br><span class="line">    将 turtle1 转换成相对 turtle2 的坐标，在计算线速度和角速度并发布</span><br><span class="line"></span><br><span class="line">    实现流程:</span><br><span class="line">        1.导包</span><br><span class="line">        2.初始化 ros 节点</span><br><span class="line">        3.创建 TF 订阅对象</span><br><span class="line">        4.处理订阅到的 TF</span><br><span class="line">            4-1.查找坐标系的相对关系</span><br><span class="line">            4-2.生成速度信息，然后发布</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line"># 1.导包</span><br><span class="line">import rospy</span><br><span class="line">import tf2_ros</span><br><span class="line">from geometry_msgs.msg import TransformStamped, Twist</span><br><span class="line">import math</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    # 2.初始化 ros 节点</span><br><span class="line">    rospy.init_node(&quot;sub_tfs_p&quot;)</span><br><span class="line">    # 3.创建 TF 订阅对象</span><br><span class="line">    buffer = tf2_ros.Buffer()</span><br><span class="line">    listener = tf2_ros.TransformListener(buffer)</span><br><span class="line">    # 4.处理订阅到的 TF</span><br><span class="line">    rate = rospy.Rate(10)</span><br><span class="line">    # 创建速度发布对象</span><br><span class="line">    pub = rospy.Publisher(&quot;/turtle2/cmd_vel&quot;,Twist,queue_size=1000)</span><br><span class="line">    while not rospy.is_shutdown():</span><br><span class="line"></span><br><span class="line">        rate.sleep()</span><br><span class="line">        try:</span><br><span class="line">            #def lookup_transform(self, target_frame, source_frame, time, timeout=rospy.Duration(0.0)):</span><br><span class="line">            trans = buffer.lookup_transform(&quot;turtle2&quot;,&quot;turtle1&quot;,rospy.Time(0))</span><br><span class="line">            # rospy.loginfo(&quot;相对坐标:(%.2f,%.2f,%.2f)&quot;,</span><br><span class="line">            #             trans.transform.translation.x,</span><br><span class="line">            #             trans.transform.translation.y,</span><br><span class="line">            #             trans.transform.translation.z</span><br><span class="line">            #             )   </span><br><span class="line">            # 根据转变后的坐标计算出速度和角速度信息</span><br><span class="line">            twist = Twist()</span><br><span class="line">            # 间距 = x^2 + y^2  然后开方</span><br><span class="line">            twist.linear.x = 0.5 * math.sqrt(math.pow(trans.transform.translation.x,2) + math.pow(trans.transform.translation.y,2))</span><br><span class="line">            twist.angular.z = 4 * math.atan2(trans.transform.translation.y, trans.transform.translation.x)</span><br><span class="line"></span><br><span class="line">            pub.publish(twist)</span><br><span class="line"></span><br><span class="line">        except Exception as e:</span><br><span class="line">            rospy.logwarn(&quot;警告:%s&quot;,e)</span><br></pre></td></tr></table></figure>
+<pre><code> 5.运行：使用launch文件组织需要运行的节点
+</code></pre>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">  </span><br><span class="line">&lt;launch&gt;</span><br><span class="line">	&lt;!-- 1.准备工作：启动乌龟的GUI节点与键盘控制节点；--&gt;</span><br><span class="line">    &lt;node pkg=&quot;turtlesim&quot; type=&quot;turtlesim_node&quot; name=&quot;turtle1&quot; output=&quot;screen&quot; /&gt;</span><br><span class="line">    &lt;node pkg=&quot;turtlesim&quot; type=&quot;turtle_teleop_key&quot; name=&quot;key_control&quot; output=&quot;screen&quot;/&gt;</span><br><span class="line">	</span><br><span class="line">	&lt;!--2.需要调用服务生成一只新的乌龟 ；--&gt;</span><br><span class="line">    &lt;node pkg=&quot;demo06_test_flow_p&quot; type=&quot;test01_turtle_spawn_p.py&quot; name=&quot;turtle_spawn&quot; output=&quot;screen&quot;/&gt;</span><br><span class="line"></span><br><span class="line">	&lt;!--3.发布两只乌龟的坐标信息：</span><br><span class="line">		1.复用之前的乌龟的坐标发布功能；</span><br><span class="line">		2.调用节点时，以参数的方式传递乌龟的名称，解析参数置换；订阅话题消息--&gt;</span><br><span class="line">		</span><br><span class="line">    &lt;node pkg=&quot;demo06_test_flow_p&quot; type=&quot;test02_turtle_tf_pub_p.py&quot; name=&quot;tf_pub1&quot; args=&quot;turtle1&quot; output=&quot;screen&quot;/&gt;</span><br><span class="line">    &lt;node pkg=&quot;demo06_test_flow_p&quot; type=&quot;test02_turtle_tf_pub_p.py&quot; name=&quot;tf_pub2&quot; args=&quot;turtle2&quot; output=&quot;screen&quot;/&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;!--4.订阅坐标信息，并且转换为乌龟a相对于乌龟b的坐标信息--&gt;</span><br><span class="line">    &lt;node pkg=&quot;demo06_test_flow_p&quot; type=&quot;test03_turtle_tf_sub_p.py&quot; name=&quot;tf_sub&quot; output=&quot;screen&quot;/&gt;</span><br><span class="line"></span><br><span class="line">&lt;/launch&gt;</span><br></pre></td></tr></table></figure>
+<p>![[Pasted image 20250328221440.png]]</p>
+<h1 id="成功啦😀"><a href="#成功啦😀" class="headerlink" title="成功啦😀"></a>成功啦😀</h1>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">更新于</span>
+    <time title="修改时间：2025-03-28 22:15:37" itemprop="dateModified" datetime="2025-03-28T22:15:37+08:00">2025-03-28</time>
+  </span>
+</div>
+
+      
+<div class="reward">
+  <button><i class="ic i-heartbeat"></i> 赞赏</button>
+  <p>请我喝[茶]~(￣▽￣)~*</p>
+  <div id="qr">
+      
+      <div>
+        <img data-src="/images/wechatpay.png" alt="Doald-art 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/alipay.png" alt="Doald-art 支付宝">
+        <p>支付宝</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/paypal.png" alt="Doald-art 贝宝">
+        <p>贝宝</p>
+      </div>
+  </div>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>本文作者： </strong>Doald-art <i class="ic i-at"><em>@</em></i>Hexo
+  </li>
+  <li class="link">
+    <strong>本文链接：</strong>
+    <a href="https://doald-art.github.io/2025/03/21/ros%E5%AD%A6%E4%B9%A0/TF%E5%9D%90%E6%A0%87%E5%8F%98%E6%8D%A2/" title="TF坐标变换">https://doald-art.github.io/2025/03/21/ros学习/TF坐标变换/</a>
+  </li>
+  <li class="license">
+    <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2025/03/21/%E4%B8%AA%E4%BA%BA%E6%97%A5%E8%AE%B0/%E7%94%9F%E5%91%BD/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;s3.bmp.ovh&#x2F;imgs&#x2F;2025&#x2F;04&#x2F;12&#x2F;706de45f37a3b277.png" title="生命">
+  <span class="type">上一篇</span>
+  <span class="category"><i class="ic i-flag"></i> </span>
+  <h3>生命</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+      
+
+  <a href="/2025/03/21/ros%E5%AD%A6%E4%B9%A0/%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B6%E5%AE%9E%E6%93%8D/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;s3.bmp.ovh&#x2F;imgs&#x2F;2025&#x2F;04&#x2F;12&#x2F;b95db2d654344b37.jpeg" title="通信机制实操">
+  <span class="type">下一篇</span>
+  <span class="category"><i class="ic i-flag"></i> </span>
+  <h3>通信机制实操</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="文章目录">
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5%E4%B8%8E%E4%BD%9C%E7%94%A8"><span class="toc-number">1.</span> <span class="toc-text">概念与作用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9D%90%E6%A0%87-msg-%E6%B6%88%E6%81%AF"><span class="toc-number">1.1.</span> <span class="toc-text">坐标 msg 消息</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9D%90%E6%A0%87-msg-%E4%BF%A1%E6%81%AF"><span class="toc-number">2.</span> <span class="toc-text">坐标 msg 信息</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E5%9D%90%E6%A0%87%E5%8F%98%E6%8D%A2"><span class="toc-number">3.</span> <span class="toc-text">静态坐标变换</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E5%9D%90%E6%A0%87%E5%8F%98%E6%8D%A2"><span class="toc-number">4.</span> <span class="toc-text">动态坐标变换</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%9A%E5%9D%90%E6%A0%87%E5%8F%98%E6%8D%A2%F0%9F%98%80"><span class="toc-number">5.</span> <span class="toc-text">多坐标变换😀</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Tf-%E5%9D%90%E6%A0%87%E5%8F%98%E6%8D%A2%E5%AE%9E%E6%93%8D"><span class="toc-number">6.</span> <span class="toc-text">Tf 坐标变换实操</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%88%90%E5%8A%9F%E5%95%A6%F0%9F%98%80"><span class="toc-number">7.</span> <span class="toc-text">成功啦😀</span></a></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="系列文章">
+      </div>
+      <div class="overview panel" data-title="站点概览">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="Doald-art"
+      data-src="/images/images/avatar.jpg">
+  <p class="name" itemprop="name">Doald-art</p>
+  <div class="description" itemprop="description"></div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">16</span>
+        <span class="name">文章</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+        <a href="/2025/03/21/%E4%B8%AA%E4%BA%BA%E6%97%A5%E8%AE%B0/%E7%94%9F%E5%91%BD/" rel="prev" title="上一篇"><i class="ic i-chevron-left"></i></a>
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+        <a href="/2025/03/21/ros%E5%AD%A6%E4%B9%A0/%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B6%E5%AE%9E%E6%93%8D/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a>
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>随机文章</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2025/03/19/%E4%B8%AA%E4%BA%BA%E6%97%A5%E8%AE%B0/%E5%A5%BD%E8%BF%90%E8%AE%BE%E8%AE%A1/" title="好运设计">好运设计</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2025/04/06/%E6%A0%96%E6%99%9A%E9%9C%9E/%E6%88%90%E9%95%BF%E7%9A%84%E5%88%BA%EF%BC%8C%E5%BC%80%E5%87%BA%E5%9D%9A%E9%9F%A7%E7%9A%84%E8%8A%B1/" title="成长的刺，开出坚韧的花">成长的刺，开出坚韧的花</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2025/04/06/ros%E5%AD%A6%E4%B9%A0/%E4%BB%BF%E7%9C%9F%E5%9F%BA%E7%A1%80/urdf%E9%9B%86%E6%88%90Gazebo/" title="urdf集成Gazebo">urdf集成Gazebo</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2025/03/21/%E4%B8%AA%E4%BA%BA%E6%97%A5%E8%AE%B0/%E7%94%9F%E5%91%BD/" title="生命">生命</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2025/03/21/ros%E5%AD%A6%E4%B9%A0/TF%E5%9D%90%E6%A0%87%E5%8F%98%E6%8D%A2/" title="TF坐标变换">TF坐标变换</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2025/04/06/ros%E5%AD%A6%E4%B9%A0/%E4%BB%BF%E7%9C%9F%E5%9F%BA%E7%A1%80/urdf%E4%BC%98%E5%8C%96_xacro/" title="urdf优化_xacro">urdf优化_xacro</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2025/04/05/%E4%B8%AA%E4%BA%BA%E6%97%A5%E8%AE%B0/%E8%87%B4%E8%89%AF%E7%9F%A5/" title="致良知">致良知</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2025/03/23/%E4%B8%AA%E4%BA%BA%E6%97%A5%E8%AE%B0/%E6%AC%B2%E6%9C%9B/" title="欲望">欲望</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2025/04/06/ros%E5%AD%A6%E4%B9%A0/%E4%BB%BF%E7%9C%9F%E5%9F%BA%E7%A1%80/rviz%E6%8E%A7%E5%88%B6%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A8%A1%E5%9E%8B%E8%BF%90%E5%8A%A8/" title="rviz控制">rviz控制</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2025/03/26/ros%E5%AD%A6%E4%B9%A0/slam%E5%AF%BC%E8%88%AA/" title="slam导航">slam导航</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>最新评论</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2010 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Doald-art @ Yume Shoka</span>
+  </div>
+  <div class="powered-by">
+    基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2025/03/21/ros学习/TF坐标变换/',
+    favicon: {
+      show: "（●´3｀●）やれやれだぜ",
+      hide: "(´Д｀)大変だ！"
+    },
+    search : {
+      placeholder: "文章搜索",
+      empty: "关于 「 ${query} 」，什么也没搜到",
+      stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    valine: true,fancybox: true,
+    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>

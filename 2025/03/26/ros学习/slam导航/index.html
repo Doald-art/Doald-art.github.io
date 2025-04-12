@@ -1,0 +1,576 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="Hexo" href="https://doald-art.github.io/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="Hexo" href="https://doald-art.github.io/atom.xml" />
+<link rel="alternate" type="application/json" title="Hexo" href="https://doald-art.github.io/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+
+<link rel="canonical" href="https://doald-art.github.io/2025/03/26/ros%E5%AD%A6%E4%B9%A0/slam%E5%AF%BC%E8%88%AA/">
+
+
+
+  <title>
+slam导航 |
+Yume Shoka = Hexo</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">slam导航
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="创建时间：2025-03-26 13:26:50">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">发表于</span>
+    <time itemprop="dateCreated datePublished" datetime="2025-03-26T13:26:50+08:00">2025-03-26</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="切换导航栏">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">Yume Shoka</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://s3.bmp.ovh/imgs/2025/04/12/706de45f37a3b277.png"></li>
+          <li class="item" data-background-image="https://s3.bmp.ovh/imgs/2025/04/12/35c978ea62b07502.jpeg"></li>
+          <li class="item" data-background-image="https://s3.bmp.ovh/imgs/2025/04/12/b95db2d654344b37.jpeg"></li>
+          <li class="item" data-background-image="https://s3.bmp.ovh/imgs/2025/04/12/7adb9dec5ebf62b7.png"></li>
+          <li class="item" data-background-image="https://s3.bmp.ovh/imgs/2025/04/12/7398e7df970a8749.jpg"></li>
+          <li class="item" data-background-image="https://s3.bmp.ovh/imgs/2025/04/12/849513821a448582.jpg"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">首页</a></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
+  <link itemprop="mainEntityOfPage" href="https://doald-art.github.io/2025/03/26/ros%E5%AD%A6%E4%B9%A0/slam%E5%AF%BC%E8%88%AA/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/images/avatar.jpg">
+    <meta itemprop="name" content="Doald-art">
+    <meta itemprop="description" content=", ">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Hexo">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h1 id="导航模块简介"><a href="#导航模块简介" class="headerlink" title="导航模块简介"></a>导航模块简介</h1><ol>
+<li>全局地图</li>
+<li>自身定位</li>
+<li>路径规划</li>
+<li>运动控制</li>
+<li>环境感知</li>
+</ol>
+<h1 id="Slam-简述"><a href="#Slam-简述" class="headerlink" title="Slam 简述"></a>Slam 简述</h1><ol>
+<li><em>概念</em>：实时定位与地图的构建，或并发建图与定位</li>
+<li>SLAM问题可以描述为: 机器人在未知环境中从一个未知位置开始移动,在移动过程中根据位置估计和地图进行自身定位，同时在自身定位的基础上建造增量式地图，以绘制出外部环境的完全地图。</li>
+<li><strong>注意</strong>：slam 虽然是机器人导航的重要技术之一，但是二者并不等价，也就是说，slam 只是实现地图构建和即时定位</li>
+</ol>
+<h1 id="导航实现"><a href="#导航实现" class="headerlink" title="导航实现"></a>导航实现</h1><h3 id="Slam-建图"><a href="#Slam-建图" class="headerlink" title="Slam 建图"></a>Slam 建图</h3><ol>
+<li>Gmapping 简介<ol>
+<li>概念与作用：gmapping 是 ros 中较为成熟的 slam 算法之一，gampping 可以根据移动机器人里程计数据和激光雷达数据二维的栅格地图。</li>
+<li>安装指令：<code>sudo apt install ros-noetic-gmapping</code></li>
+</ol>
+</li>
+<li>Gmapping 节点说明<ol>
+<li><p>订阅的 topic</p>
+<ul>
+<li>Tf: 用于雷达、底盘与里程计之间的坐标变换消息</li>
+<li>Scan: slam 所需的雷达信息</li>
+</ul>
+</li>
+<li><p>发布的 topic</p>
+<ul>
+<li>Map_metadata: 地图元数据 </li>
+<li>Map (nav_msgs&#x2F;OccupancyGrid): 地图栅格数据，一般会在 rviz 中以图形化的方式显示</li>
+<li>~entropy (std_msgs&#x2F;Float64): 机器人姿态分布熵估计 (值越大，不确定性越大)</li>
+</ul>
+</li>
+<li><p><em>服务</em>：</p>
+<ul>
+<li>Dynamic_map (nav_msgs&#x2F;GetMap): 用于获取地图数据</li>
+</ul>
+</li>
+<li><p>参数：<br> ~base_frame(string, default:”base_link”)</p>
+<ul>
+<li>机器人基坐标系。</li>
+</ul>
+<p> ~map_frame(string, default:”map”)</p>
+<ul>
+<li>地图坐标系。</li>
+</ul>
+<p> ~odom_frame(string, default:”odom”)</p>
+<ul>
+<li>里程计坐标系。</li>
+</ul>
+<p> ~map_update_interval(float, default: 5.0)</p>
+<ul>
+<li>地图更新频率，根据指定的值设计更新间隔。</li>
+</ul>
+<p> ~maxUrange(float, default: 80.0)</p>
+<ul>
+<li>激光探测的最大可用范围(超出此阈值，被截断)。</li>
+</ul>
+<p> ~maxRange(float)</p>
+<ul>
+<li>激光探测的最大范围。</li>
+</ul>
+</li>
+<li><p>所需的坐标变换</p>
+<ol>
+<li>雷达坐标系–&gt;基坐标系<ul>
+<li>一般由 robot_state_publisher 或 static_transform_publisher 发布</li>
+</ul>
+</li>
+<li>基坐标系–&gt;里程计坐标系<ul>
+<li>一般由里程计节点发布</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>Gmapping 使用<ol>
+<li>编写 gmapping 节点相关 launch 文件 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">&lt;launch&gt;</span><br><span class="line">&lt;!-- 切断与gazebo的时间联系 --&gt;</span><br><span class="line">&lt;param name=&quot;use_sim_time&quot; value=&quot;false&quot;/&gt;</span><br><span class="line">&lt;param name=&quot;robot_description&quot; textfile=&quot;$(find tf_test)/urdf/robot.urdf&quot;/&gt;</span><br><span class="line">&lt;!-- gmapping节点--&gt;</span><br><span class="line">    &lt;node pkg=&quot;gmapping&quot; type=&quot;slam_gmapping&quot; name=&quot;slam_gmapping&quot; output=&quot;screen&quot;&gt;</span><br><span class="line">      &lt;remap from=&quot;scan&quot; to=&quot;scan&quot;/&gt;</span><br><span class="line">      &lt;param name=&quot;base_frame&quot; value=&quot;base_footprint&quot;/&gt;&lt;!--底盘坐标系--&gt;</span><br><span class="line">      &lt;param name=&quot;odom_frame&quot; value=&quot;odom&quot;/&gt; &lt;!--里程计坐标系--&gt;</span><br><span class="line">      &lt;param name=&quot;map_update_interval&quot; value=&quot;5.0&quot;/&gt;</span><br><span class="line">      &lt;param name=&quot;maxUrange&quot; value=&quot;16.0&quot;/&gt;</span><br><span class="line">      &lt;param name=&quot;sigma&quot; value=&quot;0.05&quot;/&gt;</span><br><span class="line">      &lt;param name=&quot;kernelSize&quot; value=&quot;1&quot;/&gt;</span><br><span class="line">      &lt;param name=&quot;lstep&quot; value=&quot;0.05&quot;/&gt;</span><br><span class="line">      &lt;param name=&quot;astep&quot; value=&quot;0.05&quot;/&gt;</span><br><span class="line">      &lt;param name=&quot;iterations&quot; value=&quot;5&quot;/&gt;</span><br><span class="line">      &lt;param name=&quot;lsigma&quot; value=&quot;0.075&quot;/&gt;</span><br><span class="line">      &lt;param name=&quot;ogain&quot; value=&quot;3.0&quot;/&gt;</span><br><span class="line">      &lt;param name=&quot;lskip&quot; value=&quot;0&quot;/&gt;</span><br><span class="line">      &lt;param name=&quot;srr&quot; value=&quot;0.1&quot;/&gt;</span><br><span class="line">      &lt;param name=&quot;srt&quot; value=&quot;0.2&quot;/&gt;</span><br><span class="line">      &lt;param name=&quot;str&quot; value=&quot;0.1&quot;/&gt;</span><br><span class="line">      &lt;param name=&quot;stt&quot; value=&quot;0.2&quot;/&gt;</span><br><span class="line">      &lt;param name=&quot;linearUpdate&quot; value=&quot;1.0&quot;/&gt;</span><br><span class="line">      &lt;param name=&quot;angularUpdate&quot; value=&quot;0.5&quot;/&gt;</span><br><span class="line">      &lt;param name=&quot;temporalUpdate&quot; value=&quot;3.0&quot;/&gt;</span><br><span class="line">      &lt;param name=&quot;resampleThreshold&quot; value=&quot;0.5&quot;/&gt;</span><br><span class="line">      &lt;param name=&quot;particles&quot; value=&quot;30&quot;/&gt;</span><br><span class="line">      &lt;param name=&quot;xmin&quot; value=&quot;-50.0&quot;/&gt;</span><br><span class="line">      &lt;param name=&quot;ymin&quot; value=&quot;-50.0&quot;/&gt;</span><br><span class="line">      &lt;param name=&quot;xmax&quot; value=&quot;50.0&quot;/&gt;</span><br><span class="line">      &lt;param name=&quot;ymax&quot; value=&quot;50.0&quot;/&gt;</span><br><span class="line">      &lt;param name=&quot;delta&quot; value=&quot;0.05&quot;/&gt;</span><br><span class="line">      &lt;param name=&quot;llsamplerange&quot; value=&quot;0.01&quot;/&gt;</span><br><span class="line">      &lt;param name=&quot;llsamplestep&quot; value=&quot;0.01&quot;/&gt;</span><br><span class="line">      &lt;param name=&quot;lasamplerange&quot; value=&quot;0.005&quot;/&gt;</span><br><span class="line">      &lt;param name=&quot;lasamplestep&quot; value=&quot;0.005&quot;/&gt;</span><br><span class="line">    &lt;/node&gt;</span><br><span class="line"></span><br><span class="line">    &lt;node pkg=&quot;joint_state_publisher&quot; name=&quot;joint_state_publisher&quot; type=&quot;joint_state_publisher&quot; /&gt;</span><br><span class="line">    &lt;node pkg=&quot;robot_state_publisher&quot; name=&quot;robot_state_publisher&quot; type=&quot;robot_state_publisher&quot; /&gt;</span><br><span class="line"></span><br><span class="line">    &lt;node pkg=&quot;rviz&quot; type=&quot;rviz&quot; name=&quot;rviz&quot; /&gt;</span><br><span class="line">    &lt;!-- 可以保存 rviz 配置并后期直接使用--&gt;</span><br><span class="line">    &lt;!--</span><br><span class="line">    &lt;node pkg=&quot;rviz&quot; type=&quot;rviz&quot; name=&quot;rviz&quot; args=&quot;-d $(find my_nav_sum)/rviz/gmapping.rviz&quot;/&gt;</span><br><span class="line">    --&gt;</span><br><span class="line">&lt;/launch&gt;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li>执行：<ol>
+<li>先启动 Gazebo 仿真环境</li>
+<li>启动地图绘制的 launch 文件</li>
+<li>启动键盘控制节点，用于控制机器人运动建图</li>
+<li>在 rviz 中添加组件，显示栅格地图<br>  ![[Pasted image 20250330225309.png]]<br>  <em>注意点</em>：  <param name="use_sim_time" value="false"/>
+ 现在的问题
+ ![[Pasted image 20250330231423.png]]
+ *打开 t*f 树检查
+ ![[Pasted image 20250401230343.png]]</li>
+</ol>
+</li>
+</ol>
+<h2 id="豆包给的解决方法"><a href="#豆包给的解决方法" class="headerlink" title="豆包给的解决方法"></a>豆包给的解决方法</h2><p>从提供的TF树图可知，<code>map</code> - <code>odom</code> 与 <code>base_link</code> - <code>child_link</code> 之间缺乏连接，导致无法建立 <code>child_link</code> 到 <code>map</code> 的变换。以下是针对性解决步骤：</p>
+<h5 id="1-补充-odom-到-base-link-的变换-SLAM建图时，通常需通过里程计或SLAM算法发布-odom-到-base-link-的变换。若缺失，需检查SLAM节点配置："><a href="#1-补充-odom-到-base-link-的变换-SLAM建图时，通常需通过里程计或SLAM算法发布-odom-到-base-link-的变换。若缺失，需检查SLAM节点配置：" class="headerlink" title="1. 补充 odom 到 base_link 的变换 SLAM建图时，通常需通过里程计或SLAM算法发布 odom 到 base_link 的变换。若缺失，需检查SLAM节点配置："></a>1. 补充 <code>odom</code> 到 <code>base_link</code> 的变换 SLAM建图时，通常需通过里程计或SLAM算法发布 <code>odom</code> 到 <code>base_link</code> 的变换。若缺失，需检查SLAM节点配置：</h5><ul>
+<li><strong>以Gmapping为例</strong>：确保启动文件中正确配置了坐标系关系，例如在启动参数中明确 <code>odom_frame</code> 和 <code>base_frame</code>： <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;launch&gt; </span><br><span class="line">&lt;node pkg=&quot;gmapping&quot; type=&quot;slam_gmapping&quot; name=&quot;slam_gmapping&quot;&gt; </span><br><span class="line">	&lt;param name=&quot;odom_frame&quot; value=&quot;odom&quot;/&gt; </span><br><span class="line">	&lt;param name=&quot;base_frame&quot; value=&quot;base_link&quot;/&gt; </span><br><span class="line">   &lt;/node&gt; </span><br><span class="line">&lt;/launch&gt;</span><br></pre></td></tr></table></figure>
+ 若使用自定义SLAM方案，需确保代码中通过 <code>tf2_ros</code> 发布 <code>odom</code> 到 <code>base_link</code> 的实时变换。</li>
+</ul>
+<h5 id="2-检查机器人状态发布-robot-state-publisher-需依赖关节状态构建TF树。确保："><a href="#2-检查机器人状态发布-robot-state-publisher-需依赖关节状态构建TF树。确保：" class="headerlink" title="2. 检查机器人状态发布 robot_state_publisher 需依赖关节状态构建TF树。确保："></a>2. 检查机器人状态发布 <code>robot_state_publisher</code> 需依赖关节状态构建TF树。确保：</h5><ul>
+<li><strong>关节状态正常发布</strong>：运行 <code>rostopic echo /joint_states</code>，检查是否有机器人关节角度数据。若缺失，需启动 <code>joint_state_publisher</code> 或硬件驱动节点。</li>
+<li><strong>URDF配置正确</strong>：确认URDF中连杆关系包含 <code>base_link</code> 到 <code>child_link</code> 的正确定义，且通过 <code>robot_state_publisher</code> 加载：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;node pkg=&quot;robot_state_publisher&quot; type=&quot;robot_state_publisher&quot; name=&quot;robot_state_publisher&quot;&gt; </span><br><span class="line">	&lt;param name=&quot;robot_description&quot; command=&quot;$(find xacro)/xacro $(find your_package)/urdf/robot.urdf.xacro&quot;/&gt; </span><br><span class="line">&lt;/node&gt;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="3-手动验证TF变换使用-tf-echo-工具检查关键变换：-验证-odom-到-base-link：-bash-rosrun-tf-tf-echo-odom-base-link-验证-base-link-到-child-link：-bash-rosrun-tf-tf-echo-base-link-child-link-若某一步骤无输出，说明对应变换未发布，需返回检查发布节点。通过补充-odom-到-base-link-的变换，并确保机器人TF树完整，即可建立-child-link-到-map-的连通路径，解决Rviz的TF错误。"><a href="#3-手动验证TF变换使用-tf-echo-工具检查关键变换：-验证-odom-到-base-link：-bash-rosrun-tf-tf-echo-odom-base-link-验证-base-link-到-child-link：-bash-rosrun-tf-tf-echo-base-link-child-link-若某一步骤无输出，说明对应变换未发布，需返回检查发布节点。通过补充-odom-到-base-link-的变换，并确保机器人TF树完整，即可建立-child-link-到-map-的连通路径，解决Rviz的TF错误。" class="headerlink" title="3. 手动验证TF变换使用 tf_echo 工具检查关键变换： - 验证 odom 到 base_link： bash rosrun tf tf_echo odom base_link  - 验证 base_link 到 child_link： bash rosrun tf tf_echo base_link child_link  若某一步骤无输出，说明对应变换未发布，需返回检查发布节点。通过补充 odom 到 base_link 的变换，并确保机器人TF树完整，即可建立 child_link 到 map 的连通路径，解决Rviz的TF错误。"></a>3. 手动验证TF变换使用 <code>tf_echo</code> 工具检查关键变换： - 验证 <code>odom</code> 到 <code>base_link</code>： <code>bash rosrun tf tf_echo odom base_link </code> - 验证 <code>base_link</code> 到 <code>child_link</code>： <code>bash rosrun tf tf_echo base_link child_link </code> 若某一步骤无输出，说明对应变换未发布，需返回检查发布节点。通过补充 <code>odom</code> 到 <code>base_link</code> 的变换，并确保机器人TF树完整，即可建立 <code>child_link</code> 到 <code>map</code> 的连通路径，解决Rviz的TF错误。</h3><h2 id="现在的问题："><a href="#现在的问题：" class="headerlink" title="现在的问题："></a>现在的问题：</h2><ul>
+<li>当我使用 tf-echo 检查关键的变换时：<code>rosrun tf tf_echo odom base_link</code>, 发现 TF（Transform）系统存在两个未连接的树，分别是包含 <code>odom</code> 和 <code>map</code> 的树，以及包含 <code>base_link</code>、<code>child_link</code>、<code>dummy_base_link</code> 和 <code>top_dummy_link</code> 的树，所以无法找到 <code>odom</code> 与 <code>base_link</code> 之间的变换关系。</li>
+<li>😇 先跳一跳，之后在解决😆</li>
+</ul>
+<h4 id="继续解决吖😀"><a href="#继续解决吖😀" class="headerlink" title="继续解决吖😀"></a>继续解决吖😀</h4><ol>
+<li>加了 urdf 依赖</li>
+<li>把 Fixed Frame 改为 base_link<br> ![[Pasted image 20250403222336.png]]<br> ![[Pasted image 20250409102040.png]]<br> ![[126ec8b51eec111b396f68c2990d3d3.png]]<br>![[b5d058f95e2d1e4e80056f776e93067.png]]</li>
+</ol>
+<h1 id="地图服务"><a href="#地图服务" class="headerlink" title="地图服务"></a>地图服务</h1><ol>
+<li>Map_server 简介：map_saver 和 map_server，安装命令为 <code>sudo apt install ros-noetic-map-server</code></li>
+</ol>
+
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">更新于</span>
+    <time title="修改时间：2025-04-10 08:15:35" itemprop="dateModified" datetime="2025-04-10T08:15:35+08:00">2025-04-10</time>
+  </span>
+</div>
+
+      
+<div class="reward">
+  <button><i class="ic i-heartbeat"></i> 赞赏</button>
+  <p>请我喝[茶]~(￣▽￣)~*</p>
+  <div id="qr">
+      
+      <div>
+        <img data-src="/images/wechatpay.png" alt="Doald-art 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/alipay.png" alt="Doald-art 支付宝">
+        <p>支付宝</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/paypal.png" alt="Doald-art 贝宝">
+        <p>贝宝</p>
+      </div>
+  </div>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>本文作者： </strong>Doald-art <i class="ic i-at"><em>@</em></i>Hexo
+  </li>
+  <li class="link">
+    <strong>本文链接：</strong>
+    <a href="https://doald-art.github.io/2025/03/26/ros%E5%AD%A6%E4%B9%A0/slam%E5%AF%BC%E8%88%AA/" title="slam导航">https://doald-art.github.io/2025/03/26/ros学习/slam导航/</a>
+  </li>
+  <li class="license">
+    <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2025/03/23/%E4%B8%AA%E4%BA%BA%E6%97%A5%E8%AE%B0/%E6%AC%B2%E6%9C%9B/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;s3.bmp.ovh&#x2F;imgs&#x2F;2025&#x2F;04&#x2F;12&#x2F;8ff80b6683d48346.png" title="欲望">
+  <span class="type">上一篇</span>
+  <span class="category"><i class="ic i-flag"></i> </span>
+  <h3>欲望</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+      
+
+  <a href="/2025/03/26/%E4%B8%AA%E4%BA%BA%E6%97%A5%E8%AE%B0/326%E6%80%BB%E7%BB%93/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;s3.bmp.ovh&#x2F;imgs&#x2F;2025&#x2F;04&#x2F;12&#x2F;706de45f37a3b277.png" title="326总结">
+  <span class="type">下一篇</span>
+  <span class="category"><i class="ic i-flag"></i> </span>
+  <h3>326总结</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="文章目录">
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%BC%E8%88%AA%E6%A8%A1%E5%9D%97%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text">导航模块简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Slam-%E7%AE%80%E8%BF%B0"><span class="toc-number">2.</span> <span class="toc-text">Slam 简述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%BC%E8%88%AA%E5%AE%9E%E7%8E%B0"><span class="toc-number">3.</span> <span class="toc-text">导航实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Slam-%E5%BB%BA%E5%9B%BE"><span class="toc-number">3.0.1.</span> <span class="toc-text">Slam 建图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B1%86%E5%8C%85%E7%BB%99%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="toc-number">3.1.</span> <span class="toc-text">豆包给的解决方法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E8%A1%A5%E5%85%85-odom-%E5%88%B0-base-link-%E7%9A%84%E5%8F%98%E6%8D%A2-SLAM%E5%BB%BA%E5%9B%BE%E6%97%B6%EF%BC%8C%E9%80%9A%E5%B8%B8%E9%9C%80%E9%80%9A%E8%BF%87%E9%87%8C%E7%A8%8B%E8%AE%A1%E6%88%96SLAM%E7%AE%97%E6%B3%95%E5%8F%91%E5%B8%83-odom-%E5%88%B0-base-link-%E7%9A%84%E5%8F%98%E6%8D%A2%E3%80%82%E8%8B%A5%E7%BC%BA%E5%A4%B1%EF%BC%8C%E9%9C%80%E6%A3%80%E6%9F%A5SLAM%E8%8A%82%E7%82%B9%E9%85%8D%E7%BD%AE%EF%BC%9A"><span class="toc-number">3.1.0.0.1.</span> <span class="toc-text">1. 补充 odom 到 base_link 的变换 SLAM建图时，通常需通过里程计或SLAM算法发布 odom 到 base_link 的变换。若缺失，需检查SLAM节点配置：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E6%A3%80%E6%9F%A5%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%8A%B6%E6%80%81%E5%8F%91%E5%B8%83-robot-state-publisher-%E9%9C%80%E4%BE%9D%E8%B5%96%E5%85%B3%E8%8A%82%E7%8A%B6%E6%80%81%E6%9E%84%E5%BB%BATF%E6%A0%91%E3%80%82%E7%A1%AE%E4%BF%9D%EF%BC%9A"><span class="toc-number">3.1.0.0.2.</span> <span class="toc-text">2. 检查机器人状态发布 robot_state_publisher 需依赖关节状态构建TF树。确保：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%89%8B%E5%8A%A8%E9%AA%8C%E8%AF%81TF%E5%8F%98%E6%8D%A2%E4%BD%BF%E7%94%A8-tf-echo-%E5%B7%A5%E5%85%B7%E6%A3%80%E6%9F%A5%E5%85%B3%E9%94%AE%E5%8F%98%E6%8D%A2%EF%BC%9A-%E9%AA%8C%E8%AF%81-odom-%E5%88%B0-base-link%EF%BC%9A-bash-rosrun-tf-tf-echo-odom-base-link-%E9%AA%8C%E8%AF%81-base-link-%E5%88%B0-child-link%EF%BC%9A-bash-rosrun-tf-tf-echo-base-link-child-link-%E8%8B%A5%E6%9F%90%E4%B8%80%E6%AD%A5%E9%AA%A4%E6%97%A0%E8%BE%93%E5%87%BA%EF%BC%8C%E8%AF%B4%E6%98%8E%E5%AF%B9%E5%BA%94%E5%8F%98%E6%8D%A2%E6%9C%AA%E5%8F%91%E5%B8%83%EF%BC%8C%E9%9C%80%E8%BF%94%E5%9B%9E%E6%A3%80%E6%9F%A5%E5%8F%91%E5%B8%83%E8%8A%82%E7%82%B9%E3%80%82%E9%80%9A%E8%BF%87%E8%A1%A5%E5%85%85-odom-%E5%88%B0-base-link-%E7%9A%84%E5%8F%98%E6%8D%A2%EF%BC%8C%E5%B9%B6%E7%A1%AE%E4%BF%9D%E6%9C%BA%E5%99%A8%E4%BA%BATF%E6%A0%91%E5%AE%8C%E6%95%B4%EF%BC%8C%E5%8D%B3%E5%8F%AF%E5%BB%BA%E7%AB%8B-child-link-%E5%88%B0-map-%E7%9A%84%E8%BF%9E%E9%80%9A%E8%B7%AF%E5%BE%84%EF%BC%8C%E8%A7%A3%E5%86%B3Rviz%E7%9A%84TF%E9%94%99%E8%AF%AF%E3%80%82"><span class="toc-number">3.1.1.</span> <span class="toc-text">3. 手动验证TF变换使用 tf_echo 工具检查关键变换： - 验证 odom 到 base_link： bash rosrun tf tf_echo odom base_link  - 验证 base_link 到 child_link： bash rosrun tf tf_echo base_link child_link  若某一步骤无输出，说明对应变换未发布，需返回检查发布节点。通过补充 odom 到 base_link 的变换，并确保机器人TF树完整，即可建立 child_link 到 map 的连通路径，解决Rviz的TF错误。</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%B0%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%9A"><span class="toc-number">3.2.</span> <span class="toc-text">现在的问题：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%A7%E7%BB%AD%E8%A7%A3%E5%86%B3%E5%90%96%F0%9F%98%80"><span class="toc-number">3.2.0.1.</span> <span class="toc-text">继续解决吖😀</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9C%B0%E5%9B%BE%E6%9C%8D%E5%8A%A1"><span class="toc-number">4.</span> <span class="toc-text">地图服务</span></a></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="系列文章">
+      </div>
+      <div class="overview panel" data-title="站点概览">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="Doald-art"
+      data-src="/images/images/avatar.jpg">
+  <p class="name" itemprop="name">Doald-art</p>
+  <div class="description" itemprop="description"></div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">16</span>
+        <span class="name">文章</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+        <a href="/2025/03/23/%E4%B8%AA%E4%BA%BA%E6%97%A5%E8%AE%B0/%E6%AC%B2%E6%9C%9B/" rel="prev" title="上一篇"><i class="ic i-chevron-left"></i></a>
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+        <a href="/2025/03/26/%E4%B8%AA%E4%BA%BA%E6%97%A5%E8%AE%B0/326%E6%80%BB%E7%BB%93/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a>
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>随机文章</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2025/03/21/%E4%B8%AA%E4%BA%BA%E6%97%A5%E8%AE%B0/%E7%94%9F%E5%91%BD/" title="生命">生命</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2025/03/28/ros%E5%AD%A6%E4%B9%A0/%E4%BB%BF%E7%9C%9F%E5%9F%BA%E7%A1%80/%E6%9C%BA%E5%99%A8%E4%BA%BA%E4%BB%BF%E7%9C%9F%E5%9F%BA%E7%A1%80/" title="机器人仿真基础">机器人仿真基础</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2025/03/26/%E4%B8%AA%E4%BA%BA%E6%97%A5%E8%AE%B0/326%E6%80%BB%E7%BB%93/" title="326总结">326总结</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2025/03/23/%E4%B8%AA%E4%BA%BA%E6%97%A5%E8%AE%B0/%E6%AC%B2%E6%9C%9B/" title="欲望">欲望</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2025/04/06/ros%E5%AD%A6%E4%B9%A0/%E4%BB%BF%E7%9C%9F%E5%9F%BA%E7%A1%80/urdf%E9%9B%86%E6%88%90Gazebo/" title="urdf集成Gazebo">urdf集成Gazebo</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2025/04/05/%E4%B8%AA%E4%BA%BA%E6%97%A5%E8%AE%B0/%E8%87%B4%E8%89%AF%E7%9F%A5/" title="致良知">致良知</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2025/03/21/ros%E5%AD%A6%E4%B9%A0/%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B6%E5%AE%9E%E6%93%8D/" title="通信机制实操">通信机制实操</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2025/03/21/ros%E5%AD%A6%E4%B9%A0/TF%E5%9D%90%E6%A0%87%E5%8F%98%E6%8D%A2/" title="TF坐标变换">TF坐标变换</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2025/03/26/ros%E5%AD%A6%E4%B9%A0/slam%E5%AF%BC%E8%88%AA/" title="slam导航">slam导航</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2025/03/19/markdown%E8%AF%AD%E6%B3%95/markdown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/" title="markdown基本语法">markdown基本语法</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>最新评论</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2010 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Doald-art @ Yume Shoka</span>
+  </div>
+  <div class="powered-by">
+    基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2025/03/26/ros学习/slam导航/',
+    favicon: {
+      show: "（●´3｀●）やれやれだぜ",
+      hide: "(´Д｀)大変だ！"
+    },
+    search : {
+      placeholder: "文章搜索",
+      empty: "关于 「 ${query} 」，什么也没搜到",
+      stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    valine: true,fancybox: true,
+    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>
